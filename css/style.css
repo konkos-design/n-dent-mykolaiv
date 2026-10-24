@@ -122,28 +122,23 @@ p{margin:0 0 1em}
 .open .hcall .btn{visibility:hidden}
 
 /* ---------- герой ---------- */
-.hero{position:relative;background:var(--ink);color:#fff;min-height:100svh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
-.hero::before{content:"";position:absolute;left:-20%;top:-30%;width:70%;height:90%;background:radial-gradient(closest-side,rgba(29,151,173,.28),transparent);pointer-events:none}
-.hero__text{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:120px clamp(24px,4vw,64px) 64px max(var(--gut),calc((100vw - var(--wrap))/2 + var(--gut)))}
-.hero h1{font-size:clamp(52px,6.4vw,104px);line-height:.95}
+.hero{position:relative;background:var(--ink);color:#fff;overflow:hidden;padding:clamp(120px,13vw,160px) 0 clamp(64px,8vw,104px)}
+.hero::before{content:"";position:absolute;left:-15%;top:-30%;width:70%;height:110%;background:radial-gradient(closest-side,rgba(29,151,173,.28),transparent);pointer-events:none}
+.hero__grid{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(36px,6vw,96px);align-items:center}
+.hero__text{position:relative;z-index:2}
+.hero h1{font-size:clamp(50px,5.8vw,92px);line-height:.95}
 .hero h1 .ln{display:block;overflow:hidden;padding:.02em 0 .08em}
 .hero h1 .ln>span{display:inline-block}
-.hero__p{margin:28px 0 36px;max-width:42ch;font-size:clamp(17px,1.25vw,19px);color:rgba(255,255,255,.74)}
+.hero__p{margin:26px 0 34px;max-width:44ch;font-size:clamp(17px,1.25vw,19px);color:rgba(255,255,255,.74)}
 .hero__cta{display:flex;flex-wrap:wrap;gap:12px}
 .hero__cta .btn--line{color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)}
 .hero__cta .btn--line::after{background:#fff}
 .hero__cta .btn--line:hover{color:var(--ink)}
-.hero__addr{display:flex;align-items:center;gap:10px;margin-top:44px;padding-top:24px;border-top:1px solid var(--line-d);color:rgba(255,255,255,.66);font-size:.95rem}
+.hero__addr{display:flex;align-items:center;gap:10px;margin-top:40px;padding-top:22px;border-top:1px solid var(--line-d);color:rgba(255,255,255,.66);font-size:.95rem;max-width:520px}
 .hero__addr svg{width:20px;height:20px;color:var(--aqua);flex:none}
-.hero__media{position:relative;min-height:100svh;overflow:hidden}
-.hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 35%}
-.hero__svg .lines{fill:var(--aqua)}
-.hero__media::after{content:"";position:absolute;inset:0 0 auto;height:160px;background:linear-gradient(180deg,rgba(8,33,44,.7),rgba(8,33,44,0));pointer-events:none;z-index:1}
-img.pl{object-position:20% 50%}
-.hero__scroll{position:absolute;right:28px;bottom:28px;z-index:3;display:flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.75)}
-.hero__scroll i{width:1.5px;height:44px;background:rgba(255,255,255,.25);position:relative;overflow:hidden}
-.hero__scroll i::after{content:"";position:absolute;left:0;right:0;top:-40%;height:40%;background:var(--aqua);animation:drip 2.2s var(--ease) infinite}
-@keyframes drip{to{top:100%}}
+.hero__media{position:relative;justify-self:end;width:100%;max-width:440px}
+.hero__media::before{content:"";position:absolute;inset:22px -22px -22px 22px;border-radius:30px;border:1.5px solid rgba(98,201,214,.45)}
+.hero__img{position:relative;display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:35% 30%;border-radius:28px;box-shadow:0 40px 80px -30px rgba(0,0,0,.75)}
 
 /* ---------- маніфест ---------- */
 .mani{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(36px,6vw,96px);align-items:center}
@@ -306,10 +301,9 @@ img.pl{object-position:20% 50%}
   .team,.plist{grid-template-columns:1fr 1fr}
 }
 @media (max-width:900px){
-  .hero{grid-template-columns:1fr;min-height:0}
-  .hero__media{order:-1;min-height:0;height:68svh}
-  .hero__text{padding:36px var(--gut) 56px}
-  .hero__scroll{display:none}
+  .hero{padding-top:104px}
+  .hero__grid{grid-template-columns:1fr}
+  .hero__media{order:-1;justify-self:center;max-width:380px;margin-right:22px}
   .mani,.visit,.story,.svc{grid-template-columns:1fr}
   .stack{max-width:400px}
   .svc:nth-child(even) .svc__ph{order:0}
