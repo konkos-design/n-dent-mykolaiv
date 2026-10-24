@@ -136,7 +136,7 @@ p{margin:0 0 1em}
 .hero__addr{display:flex;align-items:center;gap:10px;margin-top:44px;padding-top:24px;border-top:1px solid var(--line-d);color:rgba(255,255,255,.66);font-size:.95rem}
 .hero__addr svg{width:20px;height:20px;color:var(--aqua);flex:none}
 .hero__media{position:relative;min-height:100svh;overflow:hidden}
-.hero__svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 35%}
 .hero__svg .lines{fill:var(--aqua)}
 .hero__media::after{content:"";position:absolute;inset:0 0 auto;height:160px;background:linear-gradient(180deg,rgba(8,33,44,.7),rgba(8,33,44,0));pointer-events:none;z-index:1}
 img.pl{object-position:20% 50%}
@@ -199,8 +199,8 @@ img.pl{object-position:20% 50%}
 
 /* етапи капи */
 .step{width:min(80vw,360px);min-height:360px;border-radius:22px;padding:30px;background:var(--ink-2);box-shadow:inset 0 0 0 1px var(--line-d);display:flex;flex-direction:column}
-.step .num{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--teal);color:#fff;font-weight:600;font-size:1.05rem;margin-bottom:auto}
-.step h3{font-size:34px;margin:40px 0 10px}
+.step .num{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--teal);color:#fff;font-weight:600;font-size:1.05rem}
+.step h3{font-size:34px;margin:56px 0 10px}
 .step p{margin:0;color:rgba(255,255,255,.7)}
 .step--ph{padding:0;overflow:hidden;width:min(80vw,300px);box-shadow:0 30px 60px -30px rgba(0,0,0,.7)}
 .step--ph img{width:100%;height:100%;object-fit:cover}
@@ -336,4 +336,15 @@ img.pl{object-position:20% 50%}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .rv{opacity:1;transform:none}
+}
+
+/* стрічка, що вміщується, - без кнопок і смуги */
+[data-rail].fits .rail-ctrl,[data-rail].fits .rail-bar{display:none}
+[data-rail].fits .rail{cursor:auto;justify-content:center}
+@media (min-width:901px){
+  .rail--grid{display:grid;grid-template-columns:.85fr 1fr 1fr 1fr;gap:20px;overflow:visible;max-width:var(--wrap);margin:0 auto;padding:12px var(--gut) 0!important;cursor:auto}
+  .rail--grid>*{width:auto}
+  .rail--grid .step{min-height:0}
+  .rail--grid .step--ph{min-height:0;height:100%}
+  .kapa .rail-ctrl,.kapa .rail-bar{display:none}
 }

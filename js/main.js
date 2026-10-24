@@ -60,6 +60,7 @@
         bar.style.width = (vis * 100) + '%';
         bar.style.transform = 'translateX(' + (max > 0 ? (rail.scrollLeft / max) * ((1 - vis) / vis) * 100 : 0) + '%)';
       }
+      box.classList.toggle('fits', max <= 2);
       if (prev) prev.disabled = rail.scrollLeft < 4;
       if (next) next.disabled = rail.scrollLeft > max - 4;
     }
@@ -77,6 +78,7 @@
     /* перетягування мишею з інерцією */
     var down = false, moved = false, startX = 0, startL = 0, lastX = 0, lastT = 0, v = 0, raf;
     rail.addEventListener('pointerdown', function (e) {
+      if (box.classList.contains('fits') || getComputedStyle(rail).overflowX === 'visible') return;
       if (e.pointerType !== 'mouse' || e.button !== 0) return;
       down = true; moved = false; startX = lastX = e.clientX; startL = rail.scrollLeft; lastT = performance.now(); v = 0;
       cancelAnimationFrame(raf);
@@ -155,31 +157,7 @@
     gsap.timeline({ defaults: { ease: 'power4.out' } })
       .from(lines, { yPercent: 115, duration: 1.15, stagger: 0.12 })
       .from('.hero__p, .hero__cta, .hero__addr', { y: 22, opacity: 0, duration: 0.9, stagger: 0.1 }, '-=0.75')
-      .from('.hero__svg image', { scale: 1.12, duration: 1.8, ease: 'power2.out', transformOrigin: '50% 40%' }, 0);
-  }
-
-  /* герой: кадр перетворюється на зуб під час прокрутки (без фіксації сторінки) */
-  var clip = document.getElementById('toothShape');
-  var mark = document.getElementById('toothLines');
-  if (clip && mark) {
-    var base = clip.getAttribute('data-base');
-    var cx = +clip.getAttribute('data-cx'), cy = +clip.getAttribute('data-cy');
-    var S0 = 7;
-    function setScale(s) {
-      var t = 'translate(' + cx + ' ' + cy + ') scale(' + s + ') translate(' + (-cx) + ' ' + (-cy) + ') ' + base;
-      clip.setAttribute('transform', t);
-      mark.setAttribute('transform', t);
-      mark.style.opacity = Math.max(0, Math.min(1, (2.2 - s) / 1.2)) * 0.6;
-    }
-    setScale(S0);
-    gsap.matchMedia().add('(min-width: 901px)', function () {
-      var st = ScrollTrigger.create({
-        trigger: '.hero', start: 'top top', end: 'top -38%', scrub: 0.5,
-        onUpdate: function (self) { var e = 1 - Math.pow(1 - self.progress, 2); setScale(S0 + (1 - S0) * e); }
-      });
-      var tw = gsap.to('.hero__svg', { yPercent: 30, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-      return function () { st.kill(); tw.scrollTrigger.kill(); tw.kill(); setScale(S0); gsap.set('.hero__svg', { clearProps: 'transform' }); };
-    });
+      .from('.hero__img', { opacity: 0, scale: 1.04, duration: 1.4, ease: 'power2.out' }, 0);
   }
 
   /* маніфест: слова проявляються по прокрутці */
